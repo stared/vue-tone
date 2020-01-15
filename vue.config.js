@@ -1,5 +1,7 @@
 module.exports = {
     lintOnSave: true,
     runtimeCompiler: true,
-    publicPath: '/vue-tone/'
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/vue-tone/'
+    : '/'
   };

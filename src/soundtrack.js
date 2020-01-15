@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 
 import * as Tone from "tone";
-import X from "./assets/sfx/C2-MP3.mp3";
 
 export default class Soundtrack {
   constructor() {
@@ -18,7 +17,7 @@ export default class Soundtrack {
                           "C8",  "C#8",  "D8",  "D#8",  "E8",  "F8",  "F#8",  "G8",  "G#8",  "A8",  "A#8",  "B8",
                           "C9",  "C#9",  "D9",  "D#9",  "E9",  "F9",  "F#9",  "G9"];
     this.samples = [
-      /* 00 */ X, //"../assets/sfx/C2-MP3.mp3",
+      /* 00 */ "sfx/C2-MP3.mp3",
       /* 01 */ "sfx/C4-MP3.mp3",
       /* 02 */ "sfx/drumla4-MP3.mp3",
       /* 03 */ "sfx/FlashBright_BWU228-MP3.mp3",
@@ -48,7 +47,7 @@ export default class Soundtrack {
       /* 27 */ "sfx/Track08-MP3.mp3",
       /* 28 */ "sfx/Track11-MP3.mp3",
       /* 29 */ "sfx/TrolleyHornBeep_S08TT34-MP3.mp3"
-    ];
+    ].map((path) => `${process.env.BASE_PATH}${path}`);
     this.scales = [
       [0, 2, 4, 5, 7, 9, 11], // major
       [0, 2, 3, 5, 7, 8, 10], // minor
@@ -455,9 +454,7 @@ export default class Soundtrack {
       this.synth4.connect(this.feedbackDelay);
       this.synth4.connect(this.pingPongDelay);
       for(var i = 0; i < this.samples.length; i++) {
-        console.log(this.samples[i]);
         this.effectSamplers[i] = new Tone.Sampler({"C4": this.samples[i]});
-        console.log(this.effectSamplers[i] );
         this.effectSamplers[i].disconnect();
         //this.effectSamplers[i].connect(this.feedbackDelay);
         //this.effectSamplers[i].connect(this.pingPongDelay);

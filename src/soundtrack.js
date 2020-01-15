@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import * as Tone from "tone";
+import X from "./assets/sfx/C2-MP3.mp3";
 
 export default class Soundtrack {
   constructor() {
@@ -17,7 +18,7 @@ export default class Soundtrack {
                           "C8",  "C#8",  "D8",  "D#8",  "E8",  "F8",  "F#8",  "G8",  "G#8",  "A8",  "A#8",  "B8",
                           "C9",  "C#9",  "D9",  "D#9",  "E9",  "F9",  "F#9",  "G9"];
     this.samples = [
-      /* 00 */ "sfx/C2-MP3.mp3",
+      /* 00 */ X, //"../assets/sfx/C2-MP3.mp3",
       /* 01 */ "sfx/C4-MP3.mp3",
       /* 02 */ "sfx/drumla4-MP3.mp3",
       /* 03 */ "sfx/FlashBright_BWU228-MP3.mp3",
@@ -454,12 +455,14 @@ export default class Soundtrack {
       this.synth4.connect(this.feedbackDelay);
       this.synth4.connect(this.pingPongDelay);
       for(var i = 0; i < this.samples.length; i++) {
+        console.log(this.samples[i]);
         this.effectSamplers[i] = new Tone.Sampler({"C4": this.samples[i]});
+        console.log(this.effectSamplers[i] );
         this.effectSamplers[i].disconnect();
         //this.effectSamplers[i].connect(this.feedbackDelay);
         //this.effectSamplers[i].connect(this.pingPongDelay);
         this.effectSamplers[i].connect(this.chorus);
-        this.effectSamplers[i].volume = 0.3;
+        this.effectSamplers[i].volume.value = 0.3;
         //this.effectSamplers[i].connect(this.limiter);
       }
       Tone.Transport.scheduleRepeat(function(_time) {
@@ -512,9 +515,9 @@ export default class Soundtrack {
           ) {
             temp_holder.synth1_ghostNoteTriggeredFlag = false;
             var temp_chord = temp_holder.randomChord(temp_holder, 4, 40, 60);
-            for(var i = 0; i < temp_chord.length; i++) {
+            for(let i = 0; i < temp_chord.length; i++) {
               var temp_b = true;
-              for(var j = 0; j < i; j++) {
+              for(let j = 0; j < i; j++) {
                 if(temp_chord[j] == temp_chord[i]) {temp_b = false; break}
               }
               if(temp_b) {
@@ -537,14 +540,14 @@ export default class Soundtrack {
         ) {
           temp_holder.synth1_ghostNoteTriggeredFlag = true;
           //console.log(temp_holder.current_transport_position.bits + ' ' + temp_holder.current_transport_position.quarters);
-          var temp_chord = temp_holder.randomChord(temp_holder, 3, 40, 60);
-          for(var i = 0; i < temp_chord.length; i++) {
-            var temp_b = true;
-            for(var j = 0; j < i; j++) {
-              if(temp_chord[j] == temp_chord[i]) {temp_b = false; break}
+          var temp_chord_bis = temp_holder.randomChord(temp_holder, 3, 40, 60);
+          for(let i = 0; i < temp_chord_bis.length; i++) {
+            var temp_b_bis = true;
+            for(let j = 0; j < i; j++) {
+              if(temp_chord_bis[j] == temp_chord_bis[i]) {temp_b_bis = false; break}
             }
-            if(temp_b) {
-              temp_holder.synth1.triggerAttackRelease(temp_holder.mtof(temp_chord[i]), "4n");
+            if(temp_b_bis) {
+              temp_holder.synth1.triggerAttackRelease(temp_holder.mtof(temp_chord_bis[i]), "4n");
             }
           }
         }

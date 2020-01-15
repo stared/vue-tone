@@ -30,7 +30,15 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

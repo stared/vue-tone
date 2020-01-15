@@ -47,7 +47,7 @@ export default class Soundtrack {
       /* 27 */ "sfx/Track08-MP3.mp3",
       /* 28 */ "sfx/Track11-MP3.mp3",
       /* 29 */ "sfx/TrolleyHornBeep_S08TT34-MP3.mp3"
-    ].map((path) => `${process.env.BASE_PATH}${path}`);
+    ];
     this.scales = [
       [0, 2, 4, 5, 7, 9, 11], // major
       [0, 2, 3, 5, 7, 8, 10], // minor

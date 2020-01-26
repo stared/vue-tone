@@ -663,14 +663,6 @@ export default class Soundtrack {
       console.log("[Soundtrack, _generativePartVolume] _normPitch is NaN; " + _volume);
       return;
     }
-    if(_volume < 0.0) {
-      console.log("[Soundtrack, _generativePartVolume] _volume < 0.0: " + _volume + " changed to 0.0");
-      _volume = 0.0; 
-    }
-    if(_volume > 1.0) {
-      console.log("[Soundtrack, _generativePartVolume] _volume > 1.0: " + _volume + " changed to 1.0");
-      _volume = 1.0;
-    }
     _holder.synth1.volume.value = _holder.synth1_base_volume_factor + _volume;
     _holder.synth2.volume.value = _holder.synth2_base_volume_factor + _volume;
     _holder.synth3.volume.value = _holder.synth3_base_volume_factor + _volume;
